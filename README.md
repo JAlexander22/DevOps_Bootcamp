@@ -9,4 +9,6 @@
 -DevOps is a cultrue that bridges the gap between Development
 -
 -
--**Life
+-**Life before DevOps**
+- Waterfall - V-Model
+- Transition to Agile and Scrum
