@@ -1,2 +1,6 @@
 .vagrant/
 ubuntu-xenial-16.04-cloudimg-console.log
+starter-code/app/
+starter-code/environment/
+starter-code/node_modules/
+starter-code\ubuntu-xenial-16.04-cloudimg-console.log

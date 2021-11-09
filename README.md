@@ -47,7 +47,7 @@ config.hostsupdater.aliases = ["development.local"]
 end
 
 ```
-- create `provision.sh` 
+- create `provision.sh`
 ```
 #!/bin/bash
 sudo apt-get update -y
@@ -59,7 +59,7 @@ sudo apt-get install nginx -y
 On the host machine:
 - vagrant up (to run the Vagrantfile and create a VM using VB)
 - vagrant status (the VM should be running after running vagrant with 'vagrant up')
-- type the ip address on the host url bar to see if nginx is working e.g. 
+- type the ip address on the host url bar to see if nginx is working e.g.
 192.168.10.100
 - vagrant ssh (to check if the nginx is running which should be if the nginx website opened up)
 - vagrant destroy (to destroy the vagrant VM)
@@ -104,4 +104,29 @@ Common commands:
      version         prints current and latest Vagrant version
      winrm           executes commands on a machine via WinRM
      winrm-config    outputs WinRM configuration to connect to the machine
+```
+-**Testing Dev Environment**
+Run the Vagrant file and inside `Environment/Spec-test`, run the command `rake spec`, to check if tests for Vargrant works
+- Start process of testing VM
+1) Navigate to `environment/spec-tests`
+2) `gem install bundler`
+3) `bundler`
+4) `rake spec`
+
+- Commands done to pass test with App
+```
+sudo apt-get update -y
+sudo apt-get install nodejs -y
+sudo apt-get install python-software-properties
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install nodejs -y
+sudo npm install pm2 -g
+```
+
+- To Start app/
+Navigate to folder app/app inside VM
+```
+npm install
+npm install express
+npm start
 ```
