@@ -106,7 +106,7 @@ Common commands:
      winrm-config    outputs WinRM configuration to connect to the machine
 ```
 -**Testing Dev Environment**
-Run the Vagrant file and inside `Environment/Spec-test`, run the command `rake spec`, to check if tests for Vargrant works
+Run the Vagrant file and inside `Environment/Spec-test`, run the command `rake spec`, to check if tests for Vagrant works
 - Start process of testing VM
 1) Navigate to `environment/spec-tests`
 2) `gem install bundler`
@@ -130,3 +130,24 @@ npm install
 npm install express
 npm start
 ```
+#### Linux Command
+- Who am I `uname` or `uname -a`
+- Where am I `pwd` will display current location
+- How can I list contents including hidden files `ls -a`
+- Delete file `rm filename` or `rm -rf filename`
+- Create a file `touch filename` or `nano filename`
+- Create a dir `mkdir dir_name`
+- Navigate inside dir `cd name_dir`
+- To view process `ps aux` or `top`
+- To kill process `kill (porcess_id/s)`
+- Wild card is used to deal with multiple files with same extension `*`
+- File Permissions `chmod +execute(x) read(r) write(w)`
+- Change permissions with numbers `chmod 644`
+- To list all permissions in folder `ll` or `ls -l`
+
+
+-** Environment Variables **
+- `env` list all environment Variables
+- `Variable_name=Variables` to create a Variable
+- `export Variable_name=Variables` to create  an environment Variable
+- `printenv Variable_name` to see global Variable

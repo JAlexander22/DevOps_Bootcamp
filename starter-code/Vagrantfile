@@ -1,9 +1,48 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/xenial64"
-  config.vm.network "private_network", ip: "192.168.10.100"
-  config.hostsupdater.aliases = ["development.local"]
+    config.vm.define "web" do |web|
+      web.vm.box = "ubuntu/xenial64"
 
-   config.vm.synced_folder ".", "/home/vagrant/app"
-   config.vm.provision :shell, path: "provision.sh"
+    web.vm.network "private_network", ip: "192.168.10.100"
+    web.hostsupdater.aliases = ["development.local"]
+
+    web.vm.synced_folder ".", "/home/vagrant/app"
+    web.vm.provision :shell, inline: <<-SHELL
+
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+      sudo apt-get install nginx -y
+      sudo apt-get install nodejs -y
+      sudo apt-get install python-software-properties -y
+      curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      sudo apt-get install nodejs -y
+      sudo npm install pm2 -g
+    SHELL
+
+end
+
+    config.vm.define "db" do |server|
+      server.vm.box = "ubuntu/xenial64"
+
+    server.vm.network "private_network", ip: "192.168.10.150"
+    server.hostsupdater.aliases = ["development.local"]
+
+
+    server.vm.provision :shell, inline: <<-SHELL
+      sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927
+      echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+
+      # sudo apt-get install mongodb-org=3.2.20 -y
+      sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+
+
+      # if mongo is is set up correctly these will be successful
+      sudo systemctl restart mongod
+      sudo systemctl enable mongod
+    SHELL
+
+end
 end
