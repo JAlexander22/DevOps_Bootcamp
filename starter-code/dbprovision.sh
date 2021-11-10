@@ -13,3 +13,10 @@ sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org
 # if mongo is is set up correctly these will be successful
 sudo systemctl restart mongod
 sudo systemctl enable mongod
+
+
+sudo rm -rf /etc/mongod.conf
+sudo ln -s  /home/vagrant/app/mongod.conf /etc/
+
+sudo systemctl restart mongod
+sudo systemctl enable mongod
