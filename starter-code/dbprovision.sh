@@ -14,9 +14,10 @@ sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org
 sudo systemctl restart mongod
 sudo systemctl enable mongod
 
-
+# Removes original mongod.conf and creates a soft link for added mongod.conf in app
 sudo rm -rf /etc/mongod.conf
 sudo ln -s  /home/vagrant/app/mongod.conf /etc/
 
+#Does a systemctl restart on mondo db 
 sudo systemctl restart mongod
 sudo systemctl enable mongod
